@@ -1,4 +1,4 @@
-package com.lampasoftware.algasensor.device.management;
+package com.lampasoftware.algasensor.device.management.common;
 
 import io.hypersistence.tsid.TSID;
 
