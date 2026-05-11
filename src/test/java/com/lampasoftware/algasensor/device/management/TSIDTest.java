@@ -1,5 +1,6 @@
 package com.lampasoftware.algasensor.device.management;
 
+import com.lampasoftware.algasensor.device.management.common.IdGenerator;
 import io.hypersistence.tsid.TSID;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
