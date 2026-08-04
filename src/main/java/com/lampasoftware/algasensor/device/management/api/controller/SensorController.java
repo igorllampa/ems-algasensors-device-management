@@ -1,5 +1,6 @@
 package com.lampasoftware.algasensor.device.management.api.controller;
 
+import com.lampasoftware.algasensor.device.management.api.client.SensorMonitoringClient;
 import com.lampasoftware.algasensor.device.management.api.model.SensorInput;
 import com.lampasoftware.algasensor.device.management.api.model.SensorOutput;
 import com.lampasoftware.algasensor.device.management.common.IdGenerator;
@@ -21,6 +22,8 @@ import org.springframework.web.server.ResponseStatusException;
 public class SensorController {
 
     private final SensorRepository sensorRepository;
+
+    private final SensorMonitoringClient sensorMonitoringClient;
 
 
     @GetMapping
@@ -64,6 +67,8 @@ public class SensorController {
         sensor.setEnabled(true);
 
         sensorRepository.saveAndFlush(sensor);
+
+        sensorMonitoringClient.enableMonitoring(sensorId);
     }
 
 
@@ -93,6 +98,8 @@ public class SensorController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         sensorRepository.delete(sensor);
+
+        sensorMonitoringClient.disableMonitoring(sensorId);
     }
 
     @DeleteMapping("{sensorId}/enable")
@@ -105,6 +112,8 @@ public class SensorController {
         sensor.setEnabled(false);
 
         sensorRepository.saveAndFlush(sensor);
+
+        sensorMonitoringClient.disableMonitoring(sensorId);
     }
 
     private SensorOutput convertToModel(Sensor sensor) {
