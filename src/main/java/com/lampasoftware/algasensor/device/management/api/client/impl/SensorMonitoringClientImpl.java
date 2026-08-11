@@ -2,6 +2,9 @@ package com.lampasoftware.algasensor.device.management.api.client.impl;
 
 import com.lampasoftware.algasensor.device.management.api.client.RestClientFactory;
 import com.lampasoftware.algasensor.device.management.api.client.SensorMonitoringClient;
+import com.lampasoftware.algasensor.device.management.api.model.SensorDetailOutput;
+import com.lampasoftware.algasensor.device.management.api.model.SensorMonitoringOutput;
+import com.lampasoftware.algasensor.device.management.api.model.SensorOutput;
 import io.hypersistence.tsid.TSID;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
@@ -31,5 +34,14 @@ public class SensorMonitoringClientImpl implements SensorMonitoringClient {
                 .uri("/api/sensors/{sensorId}/monitoring/disable", sensorId)
                 .retrieve()
                 .toBodilessEntity();
+    }
+
+    @Override
+    public SensorMonitoringOutput getDetail(TSID sensorId) {
+        return restClient
+                .get()
+                .uri("/api/sensors/{sensorId}/monitoring", sensorId)
+                .retrieve()
+                .body(SensorMonitoringOutput.class);
     }
 }
