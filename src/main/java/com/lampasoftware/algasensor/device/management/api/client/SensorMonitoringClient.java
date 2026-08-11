@@ -1,11 +1,21 @@
 package com.lampasoftware.algasensor.device.management.api.client;
 
-import com.lampasoftware.algasensor.device.management.api.model.SensorDetailOutput;
 import com.lampasoftware.algasensor.device.management.api.model.SensorMonitoringOutput;
 import io.hypersistence.tsid.TSID;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.service.annotation.GetExchange;
+import org.springframework.web.service.annotation.HttpExchange;
+import org.springframework.web.service.annotation.PutExchange;
 
+@HttpExchange("/api/sensors/{sensorId}")
 public interface SensorMonitoringClient {
-    void enableMonitoring(TSID sensorId);
-    void disableMonitoring(TSID sensorId);
-    SensorMonitoringOutput getDetail(TSID sensorId);
+
+    @PutExchange("/enable")
+    void enableMonitoring(@PathVariable TSID sensorId);
+
+    @PutExchange("/disable")
+    void disableMonitoring(@PathVariable TSID sensorId);
+
+    @GetExchange
+    SensorMonitoringOutput getDetail(@PathVariable TSID sensorId);
 }
