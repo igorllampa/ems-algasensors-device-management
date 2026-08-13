@@ -2,14 +2,17 @@ package com.lampasoftware.algasensor.device.management.api.client.impl;
 
 import com.lampasoftware.algasensor.device.management.api.client.RestClientFactory;
 import com.lampasoftware.algasensor.device.management.api.client.SensorMonitoringClient;
-import com.lampasoftware.algasensor.device.management.api.model.SensorDetailOutput;
 import com.lampasoftware.algasensor.device.management.api.model.SensorMonitoringOutput;
-import com.lampasoftware.algasensor.device.management.api.model.SensorOutput;
 import io.hypersistence.tsid.TSID;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-@Component
+/*
+*  This class is not being used anymore because it is replaced by the use of RestClientHttp from Spring.
+*  However, this class will be maintained here in order to have a implementation of this kind of methods, just for
+*  study purposes.
+*
+* */
+//@Component
 public class SensorMonitoringClientImpl implements SensorMonitoringClient {
 
     private final RestClient restClient;
